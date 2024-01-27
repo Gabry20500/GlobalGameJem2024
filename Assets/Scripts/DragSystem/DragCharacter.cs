@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragCharacter : MonoBehaviour
 {
+    [SerializeField] PlayerAnimationManager plyAnimationManager;
     private bool isDragged = false;
     private Vector3 offset;
 
@@ -11,13 +12,14 @@ public class DragCharacter : MonoBehaviour
     {
         if (isDragged) 
         {
-            transform.position = VectorClamp(Camera.main.ScreenToWorldPoint(Input.mousePosition), 5.18f, 5.58f);
+            transform.position = VectorClamp(Camera.main.ScreenToWorldPoint(Input.mousePosition), 5.82f, 6.31f);
         }
 
     }
 
     private void OnMouseDown()
     {
+        plyAnimationManager.SetDrugged(true);
         offset = new Vector3(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 2f, transform.position.z - Camera.main.ScreenToWorldPoint(Input.mousePosition).z);
 
         InputManager.instance.setDragged(true);
@@ -26,6 +28,7 @@ public class DragCharacter : MonoBehaviour
 
     private void OnMouseUp()
     {
+        plyAnimationManager.SetDrugged(false);
         InputManager.instance.setDragged(false);
         isDragged = false;
     }

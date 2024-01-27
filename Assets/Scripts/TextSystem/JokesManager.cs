@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 class Joke
@@ -61,6 +61,7 @@ public class JokesManager : MonoBehaviour
 
         UpdateUiText();
         InputManager.instance.checkKey += CheckCorrectInput;
+        jokesEnded += WinScene;
     }
 
 
@@ -86,7 +87,7 @@ public class JokesManager : MonoBehaviour
             if (jokesCollection.Count == currentJoke)
             {
                 // Fine delle battute
-                //jokesEnded.Invoke();
+                jokesEnded.Invoke();
             }
         }
         else
@@ -118,6 +119,11 @@ public class JokesManager : MonoBehaviour
 
         UiText.text = toPrint;
 
+    }
+
+    void WinScene()
+    {
+        SceneManager.LoadScene("WinScene");
     }
 
 }

@@ -11,20 +11,25 @@ public class CrowdBehaviour : MonoBehaviour
 
     float timeToRage = 20f;
     float rageTime = 0f;
+    bool isdisabled;
 
     private void Start()
     {
+        GameManager.instance.stats.died += DisableCrowd;
         jokesManager.mistakeMade += UpdateRage;
         jokesManager.currentJokeEnded += OnNewJoke;
     }
 
     private void FixedUpdate()
     {
-        rageTime += Time.deltaTime;
-
-        if (rageTime >= timeToRage)
+        if (isdisabled)
         {
-            UpdateRage();
+            rageTime += Time.deltaTime;
+
+            if (rageTime >= timeToRage)
+            {
+                UpdateRage();
+            }
         }
     }
 
@@ -49,5 +54,10 @@ public class CrowdBehaviour : MonoBehaviour
     public int getDifficulty()
     {
         return difficulty;
+    }
+
+    public void DisableCrowd()
+    {
+        isdisabled = true;
     }
 }

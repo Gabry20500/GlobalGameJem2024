@@ -15,17 +15,14 @@ public class CrowdGroupBehaviour : MonoBehaviour
     float throwTime = 0;
     float elapsedTime = 0f;
     float speed = 20f;
+    bool isDisabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.stats.died += DisableCrowd;
         startPos = transform.position;
         RandomizeTime();
-    }
-
-    private void OnGUI()
-    {
-        GUILayout.Label("ElapsedTime: " + elapsedTime + ", ThrowTime: " + throwTime);
     }
 
     // Update is called once per frame
@@ -38,7 +35,7 @@ public class CrowdGroupBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (elapsedTime >= throwTime)
+        if (elapsedTime >= throwTime && !isDisabled)
         {
             if (Random.Range(0f, 1f) <= throwProbability)
             {
@@ -58,6 +55,10 @@ public class CrowdGroupBehaviour : MonoBehaviour
     void ThrowProjectile()
     {
         objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position, playerObject.transform.position);
+    }
 
+    public void DisableCrowd()
+    {
+        isDisabled = true;
     }
 }

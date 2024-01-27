@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
- 
+
+    public StatsComponent stats;
+
+
     public static GameManager instance{ get; private set; }
 
     private void Awake()
@@ -21,16 +25,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        stats.died += LoseScene;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void LoseScene()
     {
-        
+        StartCoroutine(Wait(2f));
+    }
+
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        SceneManager.LoadScene("LoseScene");
     }
 }

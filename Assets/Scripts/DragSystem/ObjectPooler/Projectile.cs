@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     float radius = 0.5f;
 
 
+
     private void Awake()
     {
         int rand = Random.Range(0, objectSprite.Count);
