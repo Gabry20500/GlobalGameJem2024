@@ -13,8 +13,6 @@ class Joke
 
     public void UpdateTextSize()
     {
-        // unifiedText = text.Replace(" ", "");
-
         textSize = text.Length;
     }
 
@@ -90,14 +88,15 @@ public class JokesManager : MonoBehaviour
                 // Fine delle battute
                 //jokesEnded.Invoke();
             }
-
-            UpdateUiText();
         }
         else
         {
             mistakeMade.Invoke();
+            currentCharacter = Mathf.Clamp(currentCharacter - 1, 0, jokesCollection[currentJoke].getTextSize());
             errorCount++;
         }
+
+        UpdateUiText();
     }
 
     bool checkCurrentKey(string key)

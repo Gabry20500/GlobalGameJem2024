@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] List<Sprite> objectSprite;
 
     Vector3 startPos;
     Vector3 midPos;
@@ -11,6 +12,13 @@ public class Projectile : MonoBehaviour
     float duration = 1f;
     float radius = 0.5f;
 
+
+    private void Awake()
+    {
+        int rand = Random.Range(0, objectSprite.Count);
+        gameObject.GetComponent<SpriteRenderer>().sprite = objectSprite[rand];
+    }
+    
     private void OnEnable()
     {
         startPos = transform.position;    
@@ -37,8 +45,6 @@ public class Projectile : MonoBehaviour
             time += Time.deltaTime / duration;
             yield return null;
         }
-
-        Debug.LogWarning("Casting Collision");
 
         CastCollision();
     }

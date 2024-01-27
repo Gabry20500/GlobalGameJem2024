@@ -3,10 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using FMODUnity;
+
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance { get; private set; }
+    private FMOD.Studio.EventInstance FMODEventInstance;
+
+    private void Start()
+    {
+        FMODEventInstance = FMODUnity.RuntimeManager.CreateInstance(typingSound);
+        FMODEventInstance.start();
+
+        FMODEventInstance.setParameterByName("Alphabet", 'b' - 'a');
+
+    }
 
     private void Awake()
     {
@@ -21,6 +33,8 @@ public class InputManager : MonoBehaviour
             instance = this;
         }
     }
+
+    [SerializeField] EventReference typingSound;
 
     Event eventKeyPressed;
 	string lastKeyPressed = "";
@@ -38,6 +52,8 @@ public class InputManager : MonoBehaviour
 		{
 			lastKeyPressed = eventKeyPressed.keyCode.ToString();
             checkKey.Invoke(lastKeyPressed);
+
+            FMODManager.instance.PlayOneShot(typingSound, transform.position);
         }
 	}
 

@@ -6,7 +6,7 @@ public class CrowdGroupBehaviour : MonoBehaviour
 {
     [SerializeField] float maybeThrowTime = 5f;
     [SerializeField] float randomTimeDifference = 2f;
-    [SerializeField] float throwProbability = 0.5f;
+    [SerializeField][Range(0f, 1f)] float throwProbability = 0.5f;
 
     [SerializeField] GameObject objPool;
     [SerializeField] GameObject playerObject;
@@ -51,6 +51,7 @@ public class CrowdGroupBehaviour : MonoBehaviour
 
     void RandomizeTime()
     {
+        elapsedTime = 0f;
         throwTime = maybeThrowTime + Random.Range(-1f, 1f) * randomTimeDifference;
     }
 
