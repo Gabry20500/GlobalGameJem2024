@@ -22,41 +22,28 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    Event e;
+    Event eventKeyPressed;
 	string lastKeyPressed = "";
-	bool keydown = false;
+    bool isDragged;
 
     public delegate void CheckKey(string key);
     public CheckKey checkKey;
 
 	void OnGUI()
 	{
-		e = Event.current;
-		if (e.type.Equals(EventType.KeyDown) && !keydown)
+        if (isDragged) return;
+
+        eventKeyPressed = Event.current;
+		if (eventKeyPressed.type.Equals(EventType.KeyUp))
 		{
-			keydown = true;
-			lastKeyPressed = e.keyCode.ToString();
-		}
-
-		if (e.type.Equals(EventType.KeyUp))
-			keydown = false;
-
-        checkKey.Invoke(lastKeyPressed);
-        GUILayout.Label("\nLast Key Pressed - " + lastKeyPressed);
+			lastKeyPressed = eventKeyPressed.keyCode.ToString();
+            checkKey.Invoke(lastKeyPressed);
+        }
 	}
 
-
-	// Start is called before the first frame update
-	void Start()
+    public void setDragged(bool value)
     {
-
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        isDragged = value;
     }
 
 }

@@ -46,9 +46,11 @@ public class JokesManager : MonoBehaviour
 
     public delegate void JokesEnded();
     public delegate void CurrentJokeEnded(int newJoke);
+    public delegate void MistakeMade();
 
     public JokesEnded jokesEnded;
     public CurrentJokeEnded currentJokeEnded;
+    public MistakeMade mistakeMade;
 
 
     // Start is called before the first frame update
@@ -63,13 +65,6 @@ public class JokesManager : MonoBehaviour
         InputManager.instance.checkKey += CheckCorrectInput;
     }
 
-    // Update is called once per frame
-    void OnGUI()
-    {
-        if (currentJoke < jokesCollection.Count)
-            GUILayout.Label("Requested Char: " + jokesCollection[currentJoke].getCurrentCharacter(currentCharacter).ToString().ToLower());
-
-    }
 
     void CheckCorrectInput(string key)
     {
@@ -87,7 +82,7 @@ public class JokesManager : MonoBehaviour
                 // Fine della battuta
                 currentCharacter = 0;
                 currentJoke++;
-                //currentJokeEnded.Invoke(currentJoke);
+                currentJokeEnded.Invoke(currentJoke);
             }
 
             if (jokesCollection.Count == currentJoke)
@@ -100,6 +95,7 @@ public class JokesManager : MonoBehaviour
         }
         else
         {
+            mistakeMade.Invoke();
             errorCount++;
         }
     }
@@ -111,7 +107,7 @@ public class JokesManager : MonoBehaviour
 
     void UpdateUiText()
     {
-        string toPrint = "<color=#00FF00>";
+        string toPrint = "<color=#E42F00>";
 
         if (currentJoke < jokesCollection.Count)
         {
