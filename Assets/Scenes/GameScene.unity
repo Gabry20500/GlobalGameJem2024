@@ -670,7 +670,7 @@ Transform:
   m_GameObject: {fileID: 454177115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.77, y: -2.6, z: 0}
+  m_LocalPosition: {x: 5.9, y: -2.82, z: 0}
   m_LocalScale: {x: 0.1308529, y: 0.1308529, z: 0.1308529}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -749,7 +749,12 @@ MonoBehaviour:
   diffconstant: 10
   objPool: {fileID: 171043411}
   playerObject: {fileID: 1986704156}
-  crowdBehaviour: {fileID: 0}
+  crowdBehaviour: {fileID: 171043411}
+  crowdLayer1: {fileID: 1637215432}
+  crowdLayer2: {fileID: 2023923036}
+  crowdLayer3: {fileID: 2142881195}
+  horizontalSpeed: 0
+  verticalSpeed: 0
 --- !u!1 &456000545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,7 +1540,7 @@ Transform:
   m_GameObject: {fileID: 906231596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.85, y: -2.6, z: 0}
+  m_LocalPosition: {x: -5.98, y: -2.82, z: 0}
   m_LocalScale: {x: 0.1308529, y: 0.1308529, z: 0.1308529}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1563,6 +1568,11 @@ MonoBehaviour:
   objPool: {fileID: 171043411}
   playerObject: {fileID: 1986704156}
   crowdBehaviour: {fileID: 171043411}
+  crowdLayer1: {fileID: 137256158}
+  crowdLayer2: {fileID: 1175653240}
+  crowdLayer3: {fileID: 716647183}
+  horizontalSpeed: 0
+  verticalSpeed: 0
 --- !u!212 &906231599
 SpriteRenderer:
   m_ObjectHideFlags: 0

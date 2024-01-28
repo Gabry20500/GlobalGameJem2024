@@ -14,21 +14,38 @@ public class CrowdGroupBehaviour : MonoBehaviour
     [SerializeField] GameObject playerObject;
 
     [SerializeField] GameObject crowdBehaviour;
+
+    [SerializeField] GameObject crowdLayer1;
+    [SerializeField] GameObject crowdLayer2;
+    [SerializeField] GameObject crowdLayer3;
+    Vector3 startLayer1;
+    Vector3 startLayer2;
+    Vector3 startLayer3;
+
     CrowdBehaviour crowd;
-    Vector3 startPos;
     float throwTime = 0;
     float elapsedTime = 0f;
-    float speed = 20f;
+    float speed = 13f;
     bool isDisabled = false;
+
+    public float horizontalSpeed;
+    public float verticalSpeed;
+
+
+    float throwCountdown = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         GameManager.instance.stats.died += DisableCrowd;
-        startPos = transform.position;
         crowd = this.gameObject.GetComponentInParent<CrowdBehaviour>();
         RandomizeTime();
         GetDifficulty();
+
+        startLayer1 = crowdLayer1.transform.position;
+        startLayer2 = crowdLayer2.transform.position;
+        startLayer3 = crowdLayer3.transform.position;
+
     }
 
     void GetDifficulty()
@@ -45,7 +62,16 @@ public class CrowdGroupBehaviour : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        transform.position = new Vector2(startPos.x, Mathf.Cos(elapsedTime * speed) + startPos.y);
+        if (throwCountdown > 0)
+        {
+            throwCountdown -= Time.deltaTime;
+        }
+
+        verticalSpeed = 0.01f * throwCountdown;
+
+        crowdLayer1.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed) * horizontalSpeed + startLayer1.x, Mathf.Sin(elapsedTime * speed) * verticalSpeed + startLayer1.y);
+        crowdLayer2.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed + 1.5f) * horizontalSpeed + startLayer2.x, Mathf.Sin(elapsedTime * speed + 1.5f) * verticalSpeed + startLayer2.y);
+        crowdLayer3.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed + 2.4f) * horizontalSpeed + startLayer3.x, Mathf.Sin(elapsedTime * speed + 2.4f) * verticalSpeed + startLayer3.y);
     }
 
     void FixedUpdate()
@@ -71,11 +97,20 @@ public class CrowdGroupBehaviour : MonoBehaviour
 
     void ThrowProjectile()
     {
-        objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position, playerObject.transform.position);
+        throwCountdown = 15f;
+        StartCoroutine(Wait(1f));
     }
 
     public void DisableCrowd()
     {
         isDisabled = true;
+    }
+
+
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position, playerObject.transform.position);
     }
 }

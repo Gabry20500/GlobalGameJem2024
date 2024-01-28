@@ -42,6 +42,11 @@ public class CrowdBehaviour : MonoBehaviour
     {
         rageTime = 0;
         rage++;
+
+        foreach (var c in crowdGroupBehaviours)
+        {
+            c.horizontalSpeed = Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f);
+        }
     }
 
     private void OnNewJoke(int currentJoke)
@@ -53,6 +58,7 @@ public class CrowdBehaviour : MonoBehaviour
         foreach(var  c in crowdGroupBehaviours)
         {
             c.GetDifficulty(difficulty);
+            c.horizontalSpeed = Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f);
         }
     }
 
