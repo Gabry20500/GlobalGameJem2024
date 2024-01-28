@@ -111,6 +111,6 @@ public class CrowdGroupBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-        objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position, playerObject.transform.position);
+        objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position + new Vector3(4f + Random.Range(.5f, 3f), 0f, 0f), playerObject.transform.position);
     }
 }
