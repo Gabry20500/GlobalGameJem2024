@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class CrowdGroupBehaviour : MonoBehaviour
 {
+    [SerializeField] EventReference throwSound;
+
     [SerializeField] float maybeThrowTime = 5f;
     [SerializeField] float randomTimeDifference = 2f;
     [SerializeField][Range(0f, 1f)] float throwProbability = 0.5f;
@@ -111,6 +115,7 @@ public class CrowdGroupBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
+        FMODManager.instance.PlayOneShot(throwSound, transform.position);
         objPool.GetComponent<ObjectPool>().InstantiateProjectile(transform.position + new Vector3(4f + Random.Range(.5f, 3f), 0f, 0f), playerObject.transform.position);
     }
 }

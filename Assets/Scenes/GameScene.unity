@@ -699,6 +699,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d74975890a45c468e20daceaac14fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwSound:
+    Guid:
+      Data1: 635044000
+      Data2: 1268904524
+      Data3: 204690592
+      Data4: 1965255099
+    Path: event:/SFX/SFX_Throwing
   maybeThrowTime: 5
   randomTimeDifference: 2
   throwProbability: 0.5
@@ -1517,6 +1524,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d74975890a45c468e20daceaac14fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwSound:
+    Guid:
+      Data1: 635044000
+      Data2: 1268904524
+      Data3: 204690592
+      Data4: 1965255099
+    Path: event:/SFX/SFX_Throwing
   maybeThrowTime: 5
   randomTimeDifference: 2
   throwProbability: 0.5

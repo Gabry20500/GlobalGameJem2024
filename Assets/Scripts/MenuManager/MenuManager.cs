@@ -7,8 +7,8 @@ using FMOD.Studio;
 
 public class MenuManager : MonoBehaviour
 {
-
     [SerializeField] EventReference soundTrackSound;
+    [SerializeField] EventReference uiSound;
 
     private void Start()
     {
@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
+        FMODManager.instance.PlayOneShot(uiSound, new Vector3(0f, 0f, 0f));
         TransitionManager.instance.PlayCloseAnimation();
 
         StartCoroutine(Wait(0.5f));
@@ -33,6 +34,7 @@ public class MenuManager : MonoBehaviour
 
     public void ExitGame()
     {
+        FMODManager.instance.PlayOneShot(uiSound, new Vector3(0f, 0f, 0f));
         Application.Quit();
     }
 }

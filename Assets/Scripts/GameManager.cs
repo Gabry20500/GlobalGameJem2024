@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] EventReference gameOverSound;
 
     public StatsComponent stats;
 
@@ -42,7 +45,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         stats.died += LoseScene;
-
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
     public void LoseScene()
     {
         TransitionManager.instance.PlayCloseAnimation();
+        FMODManager.instance.PlayOneShot(gameOverSound, transform.position);
         StartCoroutine(Wait(.5f, "LoseScene"));
     }
 

@@ -657,6 +657,13 @@ MonoBehaviour:
       Data3: 228437938
       Data4: -2067786520
     Path: event:/MX/MX_Background_Gameplay
+  uiSound:
+    Guid:
+      Data1: 392856084
+      Data2: 1252119502
+      Data3: 1201199001
+      Data4: 1968440464
+    Path: event:/UI/UI_Start
 --- !u!4 &1370596932
 Transform:
   m_ObjectHideFlags: 0

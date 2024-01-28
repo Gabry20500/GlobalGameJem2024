@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class TransitionManager : MonoBehaviour
 {
     bool isClosing;
     Animator animator;
+
     public static TransitionManager instance { get; private set; }
 
     private void Awake()

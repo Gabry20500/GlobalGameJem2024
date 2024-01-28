@@ -44,6 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf6b51817a940d41b5f016c1ff2a844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverSound:
+    Guid:
+      Data1: -2008781196
+      Data2: 1147674922
+      Data3: -1217339503
+      Data4: -2040358762
+    Path: event:/MX/MX_Game_Over
   stats: {fileID: 0}
   score: 0
   crowdGroup: {fileID: 0}
