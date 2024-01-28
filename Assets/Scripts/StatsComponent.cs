@@ -11,7 +11,10 @@ public class StatsComponent : MonoBehaviour
 
     public Died died;
 
-
+    private void Awake()
+    {
+        GameManager.instance.stats = this;
+    }
     void Start()
     {
         health = maxHealth;
@@ -23,7 +26,7 @@ public class StatsComponent : MonoBehaviour
 
         if (health <= 0)
         {
-            died.Invoke();
+            GameManager.instance.LoseScene();
         }
 
         if(health>maxHealth) 

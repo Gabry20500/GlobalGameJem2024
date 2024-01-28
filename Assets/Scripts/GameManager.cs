@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int score;
 
-    [SerializeField] CrowdBehaviour crowdGroup;
+    public CrowdBehaviour crowdGroup;
 
     int combo = 0;
 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
         if (instance != null && instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -31,15 +31,40 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        //if (stats == null)
+        //    stats = GameObject.FindGameObjectWithTag("Player").GetComponent<StatsComponent>();
+
+        //if (crowdGroup == null)
+        //    crowdGroup = GameObject.FindGameObjectWithTag("Crowd").GetComponent<CrowdBehaviour>();
     }
 
     private void Start()
     {
         stats.died += LoseScene;
+
     }
 
+    private void Update()
+    {
+        
+        if(Input.GetKeyUp(KeyCode.Escape)) 
+        {
+            GoMenu();
+        }
+
+    }
+
+    void GetRef()
+    {
+        if (stats == null)
+            stats = GameObject.FindGameObjectWithTag("Player").GetComponent<StatsComponent>();
+
+        if (crowdGroup == null)
+            crowdGroup = GameObject.FindGameObjectWithTag("Crowd").GetComponent<CrowdBehaviour>();
+    }
     // Start is called before the first frame update
-    void LoseScene()
+    public void LoseScene()
     {
         TransitionManager.instance.PlayCloseAnimation();
         StartCoroutine(Wait(.5f, "LoseScene"));

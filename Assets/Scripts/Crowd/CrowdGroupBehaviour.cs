@@ -69,9 +69,9 @@ public class CrowdGroupBehaviour : MonoBehaviour
 
         verticalSpeed = 0.01f * throwCountdown;
 
-        crowdLayer1.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed) * horizontalSpeed + startLayer1.x, Mathf.Sin(elapsedTime * speed) * verticalSpeed + startLayer1.y);
-        crowdLayer2.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed + 1.5f) * horizontalSpeed + startLayer2.x, Mathf.Sin(elapsedTime * speed + 1.5f) * verticalSpeed + startLayer2.y);
-        crowdLayer3.transform.position = new Vector2(Mathf.Sin(elapsedTime * speed + 2.4f) * horizontalSpeed + startLayer3.x, Mathf.Sin(elapsedTime * speed + 2.4f) * verticalSpeed + startLayer3.y);
+        crowdLayer1.transform.position = new Vector3(Mathf.Sin(elapsedTime * speed) * horizontalSpeed + startLayer1.x, Mathf.Sin(elapsedTime * speed) * verticalSpeed + startLayer1.y, crowdLayer1.transform.position.z);
+        crowdLayer2.transform.position = new Vector3(Mathf.Sin(elapsedTime * speed + 1.5f) * horizontalSpeed + startLayer2.x, Mathf.Sin(elapsedTime * speed + 1.5f) * verticalSpeed + startLayer2.y, crowdLayer2.transform.position.z);
+        crowdLayer3.transform.position = new Vector3(Mathf.Sin(elapsedTime * speed + 2.4f) * horizontalSpeed + startLayer3.x, Mathf.Sin(elapsedTime * speed + 2.4f) * verticalSpeed + startLayer3.y, crowdLayer3.transform.position.z);
     }
 
     void FixedUpdate()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrowdBehaviour : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class CrowdBehaviour : MonoBehaviour
     bool isdisabled;
     List<CrowdGroupBehaviour> crowdGroupBehaviours;
 
+
+    private void Awake()
+    {
+        GameManager.instance.crowdGroup = this;
+    }
     private void Start()
     {
         GameManager.instance.stats.died += DisableCrowd;
@@ -45,7 +51,7 @@ public class CrowdBehaviour : MonoBehaviour
 
         foreach (var c in crowdGroupBehaviours)
         {
-            c.horizontalSpeed = Mathf.Clamp(Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f),0f,10f);
+            c.horizontalSpeed = Mathf.Clamp(Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f),0f,3f);
         }
     }
 
