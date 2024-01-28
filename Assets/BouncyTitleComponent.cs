@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BouncyTitleComponent : MonoBehaviour
 {
-    [SerializeField] float speed = 1.1f;
-    [SerializeField] float magnitude = 0.2f;
+    float speed = 1.1f;
+    float magnitude = 0.2f;
     float yStart;
     float elapsedTime = 0;
 

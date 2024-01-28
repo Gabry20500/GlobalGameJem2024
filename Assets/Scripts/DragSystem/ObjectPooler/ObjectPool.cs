@@ -55,10 +55,10 @@ public class ObjectPool : MonoBehaviour
         projectile.transform.position = startPosition;
 
         float x = (startPosition.x + endPosition.x) / 2;
-        float y = ((startPosition.y + endPosition.y) / 2) * 1.5f;
+        float y = ((startPosition.y + endPosition.y) / 2) * 1.5f + 3f;
         Vector3 midPos = new Vector3(x,y,0.0f);
 
-        projectile.GetComponent<Projectile>().Throw(midPos, endPosition);
+        projectile.GetComponent<Projectile>().Throw(startPosition, midPos, endPosition);
 
     }
 }

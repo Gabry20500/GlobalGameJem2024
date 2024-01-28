@@ -11,23 +11,34 @@ public class Projectile : MonoBehaviour
     Vector3 endPos;
     float duration = 1f;
     float radius = 0.5f;
+    float elapsedTime = 0f;
+    float startRot;
+    float spinSpeed;
 
 
-
-    private void Awake()
+    private void Update()
     {
-        int rand = Random.Range(0, objectSprite.Count);
-        gameObject.GetComponent<SpriteRenderer>().sprite = objectSprite[rand];
+        elapsedTime += Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, elapsedTime * spinSpeed);
     }
     
     private void OnEnable()
     {
-        startPos = transform.position;    
+        startPos = transform.position;
+
+        startRot = Random.Range(0f, 360f);
+        spinSpeed = 150f * Random.Range(1f, 2f);
+        transform.rotation = Quaternion.Euler(0, 0, startRot);
+
+        gameObject.GetComponent<SpriteRenderer>().sprite = objectSprite[Random.Range(0, objectSprite.Count)];
     }
 
 
-    public void Throw(Vector3 MidPos, Vector3 EndPos)
+    public void Throw(Vector3 StartPos, Vector3 MidPos, Vector3 EndPos)
     {
+        startPos = StartPos;
+
+        startPos.x = startPos.x + Random.Range(-1f, 1f) * 1.5f;
         endPos = EndPos;
         midPos = MidPos;
 
