@@ -1992,8 +1992,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiText: {fileID: 1585847443}
   jokesCollection:
+  - text: yetis are rare
+  - text: they get cold feet
+  - text: monks are like tomatoes
+  - text: great at concentrating
   - text: I tried pizza jokes
   - text: but they are too cheesy
+  - text: two fruit trucks colliding
+  - text: make for a traffic jam
   fartSound:
     Guid:
       Data1: -645052198
