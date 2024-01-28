@@ -7,10 +7,14 @@ public class CrowdGroupBehaviour : MonoBehaviour
     [SerializeField] float maybeThrowTime = 5f;
     [SerializeField] float randomTimeDifference = 2f;
     [SerializeField][Range(0f, 1f)] float throwProbability = 0.5f;
+    [SerializeField] float diffconstant = 10;
+    float internaldiff;
 
     [SerializeField] GameObject objPool;
     [SerializeField] GameObject playerObject;
 
+    [SerializeField] GameObject crowdBehaviour;
+    CrowdBehaviour crowd;
     Vector3 startPos;
     float throwTime = 0;
     float elapsedTime = 0f;
@@ -22,7 +26,18 @@ public class CrowdGroupBehaviour : MonoBehaviour
     {
         GameManager.instance.stats.died += DisableCrowd;
         startPos = transform.position;
+        crowd = this.gameObject.GetComponentInParent<CrowdBehaviour>();
         RandomizeTime();
+        GetDifficulty();
+    }
+
+    void GetDifficulty()
+    {
+        internaldiff = crowd.getDifficulty();
+    }
+    public void GetDifficulty(int diff)
+    {
+        internaldiff = diff;
     }
 
     // Update is called once per frame
@@ -37,7 +52,9 @@ public class CrowdGroupBehaviour : MonoBehaviour
     {
         if (elapsedTime >= throwTime && !isDisabled)
         {
-            if (Random.Range(0f, 1f) <= throwProbability)
+            float val = (internaldiff/diffconstant);
+
+            if (Random.Range(0f, 1f) <= throwProbability + val)
             {
                 ThrowProjectile();
             }

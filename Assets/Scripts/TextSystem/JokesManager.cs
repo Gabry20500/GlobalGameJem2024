@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMODUnity;
 using FMOD.Studio;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 [System.Serializable]
 class Joke
@@ -12,6 +13,7 @@ class Joke
     [SerializeField] string text;
     string unifiedText;
     int textSize = 0;
+    
 
     public void UpdateTextSize()
     {
@@ -83,7 +85,14 @@ public class JokesManager : MonoBehaviour
             {
                 // Fine della battuta
                 currentCharacter = 0;
+                //
+
+                GameManager.instance.GiveReward(jokesCollection[currentJoke].getTextSize(),errorCount);
+                //
                 currentJoke++;
+
+                errorCount = 0;
+
                 currentJokeEnded.Invoke(currentJoke);
             }
 
@@ -97,6 +106,8 @@ public class JokesManager : MonoBehaviour
         {
             mistakeMade.Invoke();
             currentCharacter = Mathf.Clamp(currentCharacter - 1, 0, jokesCollection[currentJoke].getTextSize());
+        
+
             errorCount++;
             FMODManager.instance.PlayOneShot(fartSound, transform.position);
         }
@@ -111,7 +122,7 @@ public class JokesManager : MonoBehaviour
 
     void UpdateUiText()
     {
-        string toPrint = "<color=#E42F00>";
+        string toPrint = "<color=#FFC53D>";
 
         if (currentJoke < jokesCollection.Count)
         {
@@ -129,5 +140,6 @@ public class JokesManager : MonoBehaviour
     {
         SceneManager.LoadScene("WinScene");
     }
+
 
 }

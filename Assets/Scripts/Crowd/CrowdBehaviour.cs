@@ -12,12 +12,17 @@ public class CrowdBehaviour : MonoBehaviour
     float timeToRage = 20f;
     float rageTime = 0f;
     bool isdisabled;
+    List<CrowdGroupBehaviour> crowdGroupBehaviours;
 
     private void Start()
     {
         GameManager.instance.stats.died += DisableCrowd;
         jokesManager.mistakeMade += UpdateRage;
         jokesManager.currentJokeEnded += OnNewJoke;
+
+        crowdGroupBehaviours = new List<CrowdGroupBehaviour>();
+
+        crowdGroupBehaviours.AddRange(gameObject.GetComponentsInChildren<CrowdGroupBehaviour>());
     }
 
     private void FixedUpdate()
@@ -44,6 +49,11 @@ public class CrowdBehaviour : MonoBehaviour
         difficulty++;
         rage = 0;
         rageTime = 0;
+
+        foreach(var  c in crowdGroupBehaviours)
+        {
+            c.GetDifficulty(difficulty);
+        }
     }
 
     public int getRage()

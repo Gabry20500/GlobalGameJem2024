@@ -746,8 +746,10 @@ MonoBehaviour:
   maybeThrowTime: 5
   randomTimeDifference: 2
   throwProbability: 0.5
+  diffconstant: 10
   objPool: {fileID: 171043411}
   playerObject: {fileID: 1986704156}
+  crowdBehaviour: {fileID: 0}
 --- !u!1 &456000545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,8 +1559,10 @@ MonoBehaviour:
   maybeThrowTime: 5
   randomTimeDifference: 2
   throwProbability: 0.5
+  diffconstant: 10
   objPool: {fileID: 171043411}
   playerObject: {fileID: 1986704156}
+  crowdBehaviour: {fileID: 171043411}
 --- !u!212 &906231599
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1679,6 +1683,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 1986704164}
+  score: 0
+  crowdGroup: {fileID: 171043412}
 --- !u!4 &952681826
 Transform:
   m_ObjectHideFlags: 0
@@ -1688,7 +1694,7 @@ Transform:
   m_GameObject: {fileID: 952681824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.916878, y: 0.30183566, z: 61.199238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1986,8 +1992,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiText: {fileID: 1585847443}
   jokesCollection:
-  - text: Il colmo per un rinoceronte
-  - text: Sharknado
+  - text: I tried pizza jokes
+  - text: but they are too cheesy
   fartSound:
     Guid:
       Data1: -645052198
@@ -2650,7 +2656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b2d2bdde9eb0e48b0a6aa780943cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   health: 0
 --- !u!114 &1986704165
 MonoBehaviour:

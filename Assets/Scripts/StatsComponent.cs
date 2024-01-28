@@ -17,12 +17,23 @@ public class StatsComponent : MonoBehaviour
         health = maxHealth;
     }
 
-    public void TakeDamage()
+    public void HealthChange(int val)
     {
-        health--;
-        if (health == 0)
+        health+=val;
+
+        if (health <= 0)
         {
             died.Invoke();
         }
+
+        if(health>maxHealth) 
+        { 
+            health = maxHealth; 
+        }
+    }
+
+    public bool Checkbonus()
+    {
+        return health == maxHealth;
     }
 }

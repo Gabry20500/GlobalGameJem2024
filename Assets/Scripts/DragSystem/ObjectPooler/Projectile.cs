@@ -75,7 +75,7 @@ public class Projectile : MonoBehaviour
 
             if (playerquery != null)
             {
-                playerquery.TakeDamage();
+                playerquery.HealthChange(-1);
             }
         }
 

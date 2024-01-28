@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
 
     public StatsComponent stats;
 
+    public int score;
+
+    [SerializeField] CrowdBehaviour crowdGroup;
+
+    int combo = 0;
+
 
     public static GameManager instance{ get; private set; }
 
@@ -41,5 +47,39 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         SceneManager.LoadScene("LoseScene");
+    }
+
+    public void GiveReward(int strlength, int mistakesmade)
+    {
+        int scoretoadd = (strlength * 100 - mistakesmade*100);
+
+        if (scoretoadd < 0)
+        {
+            scoretoadd = 0;
+        }
+
+        
+        if (stats.Checkbonus())
+        {
+            combo++;
+            scoretoadd += (200 * combo);
+
+        }
+        else
+        {
+            combo = 0;
+            stats.HealthChange(+3);
+        }
+
+        score += scoretoadd;
+
+
+
+    }
+
+
+    public int GetScore()
+    {
+        return score;
     }
 }
