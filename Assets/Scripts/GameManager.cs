@@ -41,14 +41,23 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void LoseScene()
     {
-        StartCoroutine(Wait(2f));
+        TransitionManager.instance.PlayCloseAnimation();
+        StartCoroutine(Wait(.5f, "LoseScene"));
     }
 
-    IEnumerator Wait(float seconds)
+
+    public void GoMenu()
+    {
+        TransitionManager.instance.PlayCloseAnimation();
+        StartCoroutine(Wait(.5f, "MainMenu"));
+    }
+    IEnumerator Wait(float seconds, string name)
     {
         yield return new WaitForSeconds(seconds);
 
-        SceneManager.LoadScene("LoseScene");
+        TransitionManager.instance.EndCloseAnimation();
+
+        SceneManager.LoadScene(name);
     }
 
     public void GiveReward(int strlength, int mistakesmade)

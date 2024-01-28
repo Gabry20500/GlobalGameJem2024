@@ -138,8 +138,17 @@ public class JokesManager : MonoBehaviour
 
     void WinScene()
     {
-        SceneManager.LoadScene("WinScene");
+        TransitionManager.instance.PlayCloseAnimation();
+        StartCoroutine(Wait(.5f));
     }
 
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        TransitionManager.instance.EndCloseAnimation();
+        SceneManager.LoadScene("WinScene");
+
+    }
 
 }

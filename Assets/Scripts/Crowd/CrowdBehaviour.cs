@@ -45,7 +45,7 @@ public class CrowdBehaviour : MonoBehaviour
 
         foreach (var c in crowdGroupBehaviours)
         {
-            c.horizontalSpeed = Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f);
+            c.horizontalSpeed = Mathf.Clamp(Mathf.Lerp(c.horizontalSpeed, 0.1f * (difficulty + 1) * rage * 0.6f, .25f),0f,10f);
         }
     }
 

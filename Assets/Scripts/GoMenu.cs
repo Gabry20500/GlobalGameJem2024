@@ -3,27 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class GoMenu : MonoBehaviour
 {
-
-    public void PlayGame()
+    public void GoToMenu()
     {
         TransitionManager.instance.PlayCloseAnimation();
-
-        StartCoroutine(Wait(0.5f));
+        StartCoroutine(Wait(.5f, "MainMenu"));
     }
-
-    IEnumerator Wait(float seconds)
+    IEnumerator Wait(float seconds, string name)
     {
         yield return new WaitForSeconds(seconds);
 
         TransitionManager.instance.EndCloseAnimation();
-        SceneManager.LoadScene("GameScene");
 
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
+        SceneManager.LoadScene(name);
     }
 }
