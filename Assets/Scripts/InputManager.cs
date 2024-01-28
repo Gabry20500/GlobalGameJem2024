@@ -11,9 +11,8 @@ public class InputManager : MonoBehaviour
 {
 
     [SerializeField] EventReference typingSound; 
-    EventInstance typingSoundInstance;
-
     [SerializeField] PlayerAnimationManager plyAnimationManager;
+    
     Event eventKeyPressed;
     string lastKeyPressed = "";
     bool isDragged;
@@ -23,12 +22,6 @@ public class InputManager : MonoBehaviour
     public CheckKey checkKey;
 
     public static InputManager instance { get; private set; }
-
-    private void Start()
-    {
-        InitTypingSound(typingSound);
-        typingSoundInstance.setParameterByName("Alphabet", 'z');
-    }
 
     private void Update()
     {
@@ -42,16 +35,6 @@ public class InputManager : MonoBehaviour
                 timer = 0.0f;
             }
         }
-    }
-    private void InitTypingSound(EventReference reference)
-    {
-        typingSoundInstance = CreateInstance(reference);
-    }
-
-    public EventInstance CreateInstance(EventReference reference)
-    {
-        EventInstance instance = RuntimeManager.CreateInstance(reference);
-        return instance;
     }
 
     private void Awake()
@@ -76,7 +59,7 @@ public class InputManager : MonoBehaviour
 			lastKeyPressed = eventKeyPressed.keyCode.ToString();
             checkKey.Invoke(lastKeyPressed);
 
-            typingSoundInstance.setParameterByName("Alphabet", lastKeyPressed.ToLower()[0] - 'a');
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Alphabet", lastKeyPressed.ToLower()[0] - 'a');
             FMODManager.instance.PlayOneShot(typingSound, transform.position);
 
             plyAnimationManager.SetKeyPressed(true);

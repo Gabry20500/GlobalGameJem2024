@@ -1986,8 +1986,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiText: {fileID: 1585847443}
   jokesCollection:
-  - text: abcdefghijklmnopqrstuvwxyz
+  - text: Il colmo per un rinoceronte
   - text: Sharknado
+  fartSound:
+    Guid:
+      Data1: -645052198
+      Data2: 1325734218
+      Data3: 869515398
+      Data4: 1419544910
+    Path: event:/SFX_Farts
 --- !u!4 &1202243424
 Transform:
   m_ObjectHideFlags: 0

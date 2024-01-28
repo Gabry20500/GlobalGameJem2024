@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 [System.Serializable]
 class Joke
@@ -37,6 +39,7 @@ public class JokesManager : MonoBehaviour
 
     [SerializeField] TMP_Text UiText;
     [SerializeField] List<Joke> jokesCollection = new List<Joke>();
+    [SerializeField] EventReference fartSound;
 
     private int currentCharacter = 0;
     private int currentJoke = 0;
@@ -95,6 +98,7 @@ public class JokesManager : MonoBehaviour
             mistakeMade.Invoke();
             currentCharacter = Mathf.Clamp(currentCharacter - 1, 0, jokesCollection[currentJoke].getTextSize());
             errorCount++;
+            FMODManager.instance.PlayOneShot(fartSound, transform.position);
         }
 
         UpdateUiText();
