@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class MenuManager : MonoBehaviour
 {
+
+    [SerializeField] EventReference soundTrackSound;
+
+    private void Start()
+    {
+        FMODManager.instance.PlayOneShot(soundTrackSound, new Vector3(0f, 0f, 0f));
+    }
 
     public void PlayGame()
     {

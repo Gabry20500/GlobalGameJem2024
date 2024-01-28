@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{d98d48da-194a-4f05-86c0-d3334e899c54}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
 		<property name="name">
 			<value>SFX_Farts</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>0</value>
 		</property>
 		<relationship name="folder">
-			<destination>{16dc2cf6-f426-4574-b638-52e77b5fe4a5}</destination>
+			<destination>{85bc2949-4e8a-416d-9af7-ee30d47bc755}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{e13a0f29-5ae8-44d4-a0d6-4e846cfc92b2}</destination>

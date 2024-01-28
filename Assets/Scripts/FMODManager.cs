@@ -9,12 +9,18 @@ public class FMODManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        // If there is an instance, and it's not me, delete myself.
+
+        if (instance != null && instance != this)
         {
-            Debug.LogError("Errore, no FMOD?");
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
         }
 
-        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
